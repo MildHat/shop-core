@@ -10,7 +10,7 @@ class MainController extends AppController
 
     public function actionIndex()
     {
-        Db::instance();
+
     }
 
 }
