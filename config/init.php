@@ -1,4 +1,4 @@
 <?php
 
-define("DEBUG", true);
-define("LAYOUT", 'default');
+define('DEBUG', true);
+define('LAYOUT', 'default');
