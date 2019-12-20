@@ -8,7 +8,7 @@ class ErrorHandler
 {
     public function __construct()
     {
-        if (defined("DEBUG")) {
+        if (defined('DEBUG')) {
             if (DEBUG) {
                 error_reporting(-1);
             } else {
@@ -17,7 +17,7 @@ class ErrorHandler
         }
         set_error_handler([$this, 'errorHandler']);
         ob_start();
-        register_shutdown_function([$this, 'fatalErrorhandler']);
+        register_shutdown_function([$this, 'fatalErrorHandler']);
         set_exception_handler([$this, 'exceptionHandler']);
     }
 
@@ -34,11 +34,10 @@ class ErrorHandler
             default:
                 App::$logger->error($message);
         }
-        var_dump($errorCode);
         $this->displayError($errorCode, $errorMessage, $errorFile, $errorLine);
     }
 
-    public function fatalErrorhandler()
+    public function fatalErrorHandler()
     {
         $error = error_get_last();
         if (!empty($error) && $error['type'] & (E_ERROR | E_COMPILE_ERROR | E_COMPILE_WARNING | E_CORE_ERROR | E_CORE_WARNING | E_PARSE)) {
