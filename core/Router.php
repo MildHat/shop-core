@@ -26,12 +26,12 @@ class Router
 
     public static function dispatch($uri)
     {
-        $uri = rtrim(self::removeQueryString($uri), '/');
+        $uri = \rtrim(self::removeQueryString($uri), '/');
         if (self::matchRoute($uri)) {
             $controller = 'app\controllers\\' . self::$route['prefix'] . self::$route['controller'] . 'Controller';
-            if (class_exists($controller)) {
+            if (\class_exists($controller)) {
                 $controllerObject = new $controller(self::$route);
-                $action = 'action' . self::upperCamelCase(self::$route['action']);
+                $action = self::lowerCamelCase(self::$route['action']) . 'Action';
                 if (method_exists($controllerObject, $action)) {
                     $controllerObject->$action();
                     $controllerObject->getView();
@@ -49,9 +49,9 @@ class Router
     public static function matchRoute($uri)
     {
         foreach (self::$routes as $pattern => $route) {
-            if (preg_match("#{$pattern}#", $uri, $matches)) {
+            if (\preg_match("#{$pattern}#", $uri, $matches)) {
                 foreach ($matches as $key => $value) {
-                    if (is_string($key)) {
+                    if (\is_string($key)) {
                         $route[$key] = $value;
                     }
                 }
@@ -74,20 +74,20 @@ class Router
     // CamelCase
     protected static function upperCamelCase($name)
     {
-        $name = str_replace('-', ' ', $name);
-        $name = ucwords($name);
-        $name = str_replace(' ', '', $name);
+        $name = \str_replace('-', ' ', $name);
+        $name = \ucwords($name);
+        $name = \str_replace(' ', '', $name);
         return $name;
     }
 
     // camelCase
     protected static function lowerCamelCase($name)
     {
-        return lcfirst(self::upperCamelCase($name));
+        return \lcfirst(self::upperCamelCase($name));
     }
 
     public static function removeQueryString($uri)
     {
-        return str_replace('?' . $_SERVER['QUERY_STRING'], '', $uri);
+        return \str_replace('?' . $_SERVER['QUERY_STRING'], '', $uri);
     }
 }
