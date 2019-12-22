@@ -36,10 +36,10 @@ class Router
                     $controllerObject->$action();
                     $controllerObject->getView();
                 } else {
-                    throw new \Exception("Method {$controller}::{$action} not found");
+                    throw new \Exception("Method {$controller}::{$action} not found", 404);
                 }
             } else {
-                throw new \Exception("Controller {$controller} not found");
+                throw new \Exception("Controller {$controller} not found", 404);
             }
         } else {
             throw new \Exception('Route not found', 404);
