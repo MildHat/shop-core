@@ -1,5 +1,4 @@
 /.idea/
 /vendor/
-/tmp/cache/*
-/composer.lock
-/tmp/error.log
+/tmp/*
+composer.lock
