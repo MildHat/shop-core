@@ -2,7 +2,7 @@
 
     return [
         'host' => 'localhost',
-        'db_name' => 'mildhat_db',
+        'db_name' => 'project',
         'username' => 'homestead',
         'password' => 'secret'
     ];

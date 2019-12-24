@@ -6,6 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?= $this->getMeta() ?>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        input {
+            font-size: 20px;
+            padding: 5px 10px;
+        }
+        textarea {
+            font-size: 20px;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Default Template</h1>

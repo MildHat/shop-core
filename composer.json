@@ -2,7 +2,11 @@
     "name": "mildhat/shop-core",
     "type": "project",
     "require": {
-        "psr/log": "^1.1"
+        "psr/log": "^1.1",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
     },
     "authors": [
         {
