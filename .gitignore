@@ -1,4 +1,6 @@
 /.idea/
 /vendor/
 /tmp/
-composer.lock
+/lescons/
+/composer.lock
+/.DS_Store
