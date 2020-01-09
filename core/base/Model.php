@@ -75,7 +75,7 @@ abstract class Model
         return $entity;
     }
 
-    public function find($options = [])
+    public function find($options = []): array
     {
         $where = [];
         $result = [];
@@ -89,7 +89,7 @@ abstract class Model
                     foreach ($whereConditions as $key => $value) {
                         $where[] = '`' . $key . '` = "' . $value . '"';
                     }
-                    $whereClause = " WHERE " . implode(' AND ', $where);
+                    $whereClause = ' WHERE ' . implode(' AND ', $where);
                 } elseif (is_string($whereConditions)) {
                     $where .= ' WHERE ' . $options;
                 } else {
@@ -114,10 +114,12 @@ abstract class Model
             }
         }
         $raw = $this->db->query($query);
-        foreach ($raw as $rawRow) {
-            $result[] = $this->morph($rawRow);
-        }
+        if ($raw) {
+            foreach ($raw as $rawRow) {
+                $result[] = $this->morph($rawRow);
+            }
 
+        }
         return $result;
     }
 
