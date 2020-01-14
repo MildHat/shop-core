@@ -13,6 +13,9 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <!--Favicon-->
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -76,16 +79,8 @@
 <!--                                    </ul>-->
 <!--                                </li>-->
 
-                                <li class="dropdown"><a href="#">Shop</a>
-                                    <ul>
-                                        <li><a href="shop-grid.html">Products Grid View</a></li>
-                                        <li><a href="shop-list.html">Products List View</a></li>
-                                        <li><a href="external-products.html">Product Details 01</a></li>
-                                        <li><a href="variable-products.html">Product Details 02</a></li>
-                                        <li><a href="product-details.html">Product Details 03</a></li>
-                                        <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="/products">Shop</a>
                                 </li>
                                 <li><a href="/contact">Contact Us</a></li>
                                 <li><a href="/about">About</a></li>
@@ -116,7 +111,7 @@
                                 <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
                                     <li class="panel-outer">
                                         <div class="form-container">
-                                            <form method="post" action="blog.html">
+                                            <form method="post" action="">
                                                 <div class="form-group">
                                                     <input type="search" name="field-name" value="" placeholder="Search Here" required>
                                                     <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
@@ -129,7 +124,7 @@
                         </div>
                         <div class="like-btn"><span class="icon flaticon-like"></span></div>
                         <div class="cart-btn">
-                            <a href="shopping-cart.html">
+                            <a href="/cart">
                                 <span class="count">3</span>
                                 <span class="icon flaticon-shopping-bag"></span>
                             </a>

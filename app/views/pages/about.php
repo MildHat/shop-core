@@ -25,7 +25,7 @@
                     <h2>Our History</h2>
                     <div class="text">The advantage of its Latin origins and the relative meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the viewer's attention from the layout this is required when, for example, the final text is not yet available dummy text is also known as 'fill text' it is said that song composers.</div>
                     <div class="btn-box">
-                        <a href="contact.html" class="theme-btn btn-style-four">Contact us</a>
+                        <a href="/contact" class="theme-btn btn-style-four">Contact us</a>
                     </div>
                 </div>
             </div>
@@ -167,24 +167,19 @@
 </section>
 <!--End Team Section -->
 
+<?php if ($brands): ?>
 <!--Clients Section-->
 <section class="clients-section alternate">
     <div class="auto-container">
         <div class="sponsors-outer">
             <!--Sponsors Carousel-->
             <ul class="sponsors-carousel owl-carousel owl-theme">
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></figure></li>
+                <?php foreach ($brands as $brand): ?>
+                    <li class="slide-item"><figure class="image-box"><a href="#"><img src="images/uploads/brands/<?= $brand->image ?>" alt="<?= $brand->title ?>"></a></figure></li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
 </section>
 <!--End Clients Section-->
+<?php endif; ?>
