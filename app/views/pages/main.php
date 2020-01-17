@@ -1,4 +1,4 @@
-<?php if ($latestCollections): ?>
+<?php if (isset($latestCollections)): ?>
 <!--Main Slider-->
 <section class="main-slider with-border">
     <div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
@@ -494,7 +494,7 @@
 </section>
 <!--End New Products -->
 
-<?php if ($latestCollection): ?>
+<?php if (isset($latestCollection)): ?>
 <!-- Offer Section -->
 <section class="offer-section">
     <div class="auto-container">

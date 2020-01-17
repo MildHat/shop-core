@@ -6,24 +6,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Stylesheets -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-    <link href="plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-    <link href="plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+    <link href="/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+    <link href="/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="/js/template-scripts/respond.js"></script><![endif]-->
 
     <?= $this->getMeta() ?>
 </head>
@@ -80,7 +81,7 @@
 <!--                                </li>-->
 
                                 <li>
-                                    <a href="/products">Shop</a>
+                                    <a href="/shop">Shop</a>
                                 </li>
                                 <li><a href="/contact">Contact Us</a></li>
                                 <li><a href="/about">About</a></li>
@@ -90,7 +91,7 @@
                     </nav>
 
                     <div class="logo-outer">
-                        <div class="logo"><a href="/"><img src="images/logo.png" alt="" title=""></a></div>
+                        <div class="logo"><a href="/"><img src="/images/logo.png" alt="" title=""></a></div>
                     </div>
 
                     <!-- Main Menu End-->
@@ -124,9 +125,9 @@
                         </div>
                         <div class="like-btn"><span class="icon flaticon-like"></span></div>
                         <div class="cart-btn">
-                            <a href="/cart">
-                                <span class="count">3</span>
-                                <span class="icon flaticon-shopping-bag"></span>
+                            <a>
+                                <span class="count">0</span>
+                                <span class="icon flaticon-shopping-bag cart-button" data-toggle="modal" data-target=".cart"></span>
                             </a>
                         </div>
                     </div>
@@ -172,7 +173,7 @@
                         <div class="big-column footer-column col-md-5 col-sm-12 col-xs-12">
                             <div class="footer-widget about-widget">
                                 <div class="widget-content">
-                                    <div class="footer-logo"><a href="index.html"><img src="images/footer-logo.png" alt=""></a></div>
+                                    <div class="footer-logo"><a href="index.html"><img src="/images/footer-logo.png" alt=""></a></div>
                                     <div class="text">The movie star the professor and mary ann here on gilligans Isle you wanna be where you can see our troubles.</div>
                                     <ul class="contact-info">
                                         <li><i class="fa fa-phone"></i> <span>Call us :</span> +2 5600 900 200</li>
@@ -249,7 +250,7 @@
                         <div class="pull-right clearfix">
                             <div class="payment-box">
                                 <h4>Payment :</h4>
-                                <a href="#"><img src="images/resource/payments-options.png" alt=""></a>
+                                <a href="#"><img src="/images/resource/payments-options.png" alt=""></a>
                             </div>
 
                             <div class="social-links">
@@ -273,33 +274,100 @@
     </div>
     <!--End pagewrapper-->
 
+    <!-- Extra large modal -->
+
+    <div class="modal fade bd-example-modal-xl cart" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content cart-body">
+                <div class="modal-header mt-5 ml-5">
+                    <h2 class="modal-title">Cart</h2>
+                </div>
+                <!--Cart Section-->
+                <section class="cart-section">
+                    <div class="auto-container">
+                        <!--Cart Outer-->
+                        <div class="cart-outer">
+                            <div class="table-outer cart-table">
+
+                            </div>
+                            <div class="coupon-outer clearfix">
+<!--                                <div class="pull-left">-->
+<!--                                    <div class="apply-coupon clearfix">-->
+<!--                                        <div class="form-group clearfix">-->
+<!--                                            <input type="text" name="coupon-code" value="" placeholder="Enter Coupon Code...">-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group clearfix">-->
+<!--                                            <button type="button" class="theme-btn btn-style-three">Apply Coupon</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!---->
+<!--                                </div>-->
+                                <div class="form-group pull-right">
+                                    <button type="button" class="theme-btn cart-btn btn-style-three">Update Cart</button>
+                                </div>
+                            </div>
+
+
+                            <div class="row clearfix">
+                                <div class="column pull-right col-md-5 col-sm-12 col-xs-12">
+                                    <!--Totals Table-->
+                                    <ul class="totals-table">
+                                        <li class="clearfix"><span class="col col-title">Sub-total</span><span class="col">$380.10</span></li>
+                                        <li class="clearfix"><span class="col col-title">Shipping</span>
+                                            <div class="col">
+                                                <div class="shopping-option">
+                                                    <input type="checkbox" name="free-shipping" id="free-shipping">
+                                                    <label for="free-shipping">Free Shipping</label>
+                                                </div>
+                                                <div class="shopping-option">
+                                                    <input type="checkbox" name="local-pickup" id="local-pickup">
+                                                    <label for="local-pickup">Local Pickup</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix"><span class="col col-title">Total</span><span class="col">$380.10</span></li>
+                                    </ul>
+                                    <div class="text-right"><button type="submit" class="theme-btn checkout-btn btn-style-four">Proceed to Checkout</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Cart Section -->
+            </div>
+        </div>
+    </div>
+
     <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon fa fa-angle-double-up"></span></div>
-    <script src="js/jquery.js"></script>
+    <script src="/js/template-scripts/jquery.js"></script>
     <!--Revolution Slider-->
-    <script src="plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script src="plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
-    <script src="js/main-slider-script.js"></script>
+    <script src="/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="/js/template-scripts/main-slider-script.js"></script>
     <!-- End Revolution Slider -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.fancybox.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/owl.js"></script>
-    <script src="js/appear.js"></script>
-    <script src="js/mixitup.js"></script>
-    <script src="js/wow.js"></script>
+    <script src="/js/template-scripts/bootstrap.min.js"></script>
+    <script src="/js/template-scripts/jquery.fancybox.js"></script>
+    <script src="/js/template-scripts/jquery-ui.js"></script>
+    <script src="/js/template-scripts/owl.js"></script>
+    <script src="/js/template-scripts/appear.js"></script>
+    <script src="/js/template-scripts/mixitup.js"></script>
+    <script src="/js/template-scripts/wow.js"></script>
+    <script src="/js/template-scripts/sticky.js"></script>
 
-    <script src="js/validate.js"></script>
+    <script src="/js/template-scripts/validate.js"></script>
 
-    <script src="js/script.js"></script>
+    <script src="/js/template-scripts/script.js"></script>
+    <script src="/js/index.js"></script>
+
 </body>
 </html>

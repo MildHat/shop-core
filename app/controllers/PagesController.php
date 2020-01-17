@@ -23,11 +23,14 @@ class PagesController extends AppController
     public function indexAction()
     {
         $brands = $this->brand->find();
-        $latestCollection = $this->collection->getLatestCollection();
-        $latestCollections = $this->collection->getLatestCollections();
+//        $latestCollection = $this->collection->getLatestCollection();
+//        $latestCollections = $this->collection->getLatestCollections();
         $this->setMeta('Home page');
         $this->view = 'main';
-        $this->set(compact('brands', 'latestCollection', 'latestCollections'));
+        $this->set(compact('brands'// ,
+            //'latestCollection',
+         //'latestCollections'
+        ));
     }
 
     public function aboutAction()

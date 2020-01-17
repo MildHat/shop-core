@@ -1,5 +1,5 @@
 <!--Page Title-->
-<section class="page-title" style="background-image:url(images/background/shop.png);">
+<section class="page-title" style="background-image:url(/images/background/shop.png);">
     <div class="auto-container">
         <h1>Shop</h1>
         <ul class="bread-crumb clearfix">
@@ -18,7 +18,7 @@
             <!--content side-->
             <div class="content-side col-lg-9 col-md-8 col-sm-12 col-xs-12">
                 <div class="shop-upper-box clearfix">
-                    <div class="items-label pull-left">Showing 1-7 of 84 results
+                    <div class="items-label pull-left">Showing <?= $offset + 1 ?>-<?= $offset + count($products) ?> of <?= $countOfProducts ?> results
                         <div class="link-box">
                             <a href="shop-grid.html" class="active"><i class="fa fa-th"></i></a>
                             <a href="shop-list.html"><i class="fa fa-th-list"></i></a>
@@ -37,236 +37,78 @@
 
                 <div class="row clearfix">
                     <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/1.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/1.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Pair Waterbottle</a></h3>
-                                <span class="price">$65.10</span>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="product-block col-md-4 col-sm-6 col-xs-12">-->
+<!--                        <div class="inner-box">-->
+<!--                            <div class="image-box">-->
+<!--                                <a href="product-details.html"><img src="/images/resource/products/2.jpg" alt=""></a>-->
+<!--                                <span class="tag">Sale!</span>-->
+<!--                                <div class="link-box">-->
+<!--                                    <a href="/images/resource/products/2.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>-->
+<!--                                    <a href="#"><span class="flaticon-like-1"></span></a>-->
+<!--                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="content-box">-->
+<!--                                <h3><a href="product-details.html">Small Table</a></h3>-->
+<!--                                <span class="price"><del>$86.00</del> $82.30</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <?php if ($products): ?>
+                        <?php foreach ($products as $product): ?>
+                            <?php if ($product->availability): ?>
+                                <!-- Product Block -->
+                                <div class="product-block col-md-4 col-sm-6 col-xs-12">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <a href="/product/<?= $product->id ?>"><img src="/images/uploads/products/<?= $product->main_image ?>" alt=""></a>
+                                            <?php if ($product->is_sale): ?>
+                                                <span class="tag">Sale!</span>
+                                            <?php endif; ?>
+                                            <div class="link-box">
+                                                <a href="/images/uploads/products/<?= $product->main_image ?>" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
+                                                <a href="#"><span class="flaticon-like-1"></span></a>
+                                                <a><span data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="flaticon-shopping-bag add-to-cart"></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="content-box">
+                                            <h3><a href="/product/<?= $product->id ?>"><?= ucwords($product->title) ?></a></h3>
+                                            <span class="price">
 
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/2.jpg" alt=""></a>
-                                <div class="link-box">
-                                    <a href="images/resource/products/2.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Small Table</a></h3>
-                                <span class="price"><del>$86.00</del> $82.30</span>
-                            </div>
-                        </div>
-                    </div>
+                                                <!-- deleted price -->
+                                                <?php if ($product->is_sale and $product->sale_price): ?>
+                                                    <del>$<?= $product->price ?></del>
+                                                <?php endif; ?>
 
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/3.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/3.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
+                                                <!-- price -->
+                                                <?php if ($product->is_sale and $product->sale_price): ?>
+                                                    $<?= $product->sale_price ?>
+                                                <?php else: ?>
+                                                    $<?= $product->price ?>
+                                                <?php endif; ?>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Storage Tap</a></h3>
-                                <span class="price">$25.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/5.jpg" alt=""></a>
-                                <div class="link-box">
-                                    <a href="images/resource/products/5.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Wooden Wallclock</a></h3>
-                                <span class="price">$80.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/7.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/7.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Modern Lamp</a></h3>
-                                <span class="price">$172.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/8.jpg" alt=""></a>
-                                <div class="link-box">
-                                    <a href="images/resource/products/8.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Water Jug</a></h3>
-                                <span class="price"><del>$26.00</del> $22.10</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/9.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/9.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Stylish Pots</a></h3>
-                                <span class="price"><del>$36.00</del> $30.05</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/10.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/10.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Interior Decors</a></h3>
-                                <span class="price">$40.50</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/12.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/12.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Home Decors</a></h3>
-                                <span class="price">$18.20</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/4.jpg" alt=""></a>
-                                <div class="link-box">
-                                    <a href="images/resource/products/4.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Home Decor</a></h3>
-                                <span class="price">$22.10</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/6.jpg" alt=""></a>
-                                <span class="tag">Sale!</span>
-                                <div class="link-box">
-                                    <a href="images/resource/products/6.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Wireless Speaker</a></h3>
-                                <span class="price">$155.70</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Block -->
-                    <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="product-details.html"><img src="images/resource/products/11.jpg" alt=""></a>
-                                <div class="link-box">
-                                    <a href="images/resource/products/11.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                    <a href="#"><span class="flaticon-like-1"></span></a>
-                                    <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                                </div>
-                            </div>
-                            <div class="content-box">
-                                <h3><a href="product-details.html">Plate and Spoon</a></h3>
-                                <span class="price"><del>$22.00</del> $20.10</span>
-                            </div>
-                        </div>
-                    </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Styled Pagination -->
                 <div class="styled-pagination text-center">
                     <ul class="clearfix">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        <?php if ($page > 1): ?>
+                            <li><a href="/shop/<?= $page - 1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                        <?php endif; ?>
+
+                        <?php for ($i = 1; $i <= $amountOfPages; $i++): ?>
+                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a href="/shop/<?= $i ?>"><?= $i ?></a></li>
+                        <?php endfor; ?>
+
+                        <?php if ($page < $amountOfPages): ?>
+                            <li><a href="/shop/<?= $page + 1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -293,19 +135,41 @@
                             </div>
                         </div>
                     </div>
+                    <?php if ($categories): ?>
+                        <!-- Categories -->
+                        <div class="sidebar-widget categories">
+                            <div class="sidebar-title"><h2>Categories</h2></div>
+                            <ul class="category-list">
+                                <?php foreach ($categories as $category): ?>
+                                    <li>
+                                        <a href="#">
+                                            <?= ucwords($category->title) ?>
+                                            <?php if ($category->amountOfProducts > 0): ?>
+                                                <span>(<?= $category->amountOfProducts ?>)</span>
+                                            <?php endif; ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
 
-                    <!-- Categories -->
-                    <div class="sidebar-widget categories">
-                        <div class="sidebar-title"><h2>Categories</h2></div>
-                        <ul class="category-list">
-                            <li><a href="#">Home Decors  <span>(50)</span></a></li>
-                            <li><a href="#">Furniture   <span>(06)</span></a></li>
-                            <li><a href="#">Women’s   <span>(84)</span></a></li>
-                            <li><a href="#">Men’s <span>(70)</span></a></li>
-                            <li><a href="#">Fashions    <span>(26)</span></a></li>
-                            <li><a href="#">Wrist Watches    <span>(30)</span></a></li>
-                        </ul>
-                    </div>
+                    <?php if($brands): ?>
+                        <!-- Brands -->
+                        <div class="sidebar-widget">
+                            <div class="sidebar-title"><h2>Brands</h2></div>
+                            <ul class="category-list">
+                                <?php foreach ($brands as $brand): ?>
+                                    <li>
+                                        <a href="#">
+                                            <?= ucwords($brand->title) ?>
+                                            <span>(06)</span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Colors -->
                     <div class="sidebar-widget colors">
