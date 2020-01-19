@@ -91,7 +91,7 @@ abstract class Model
                     }
                     $whereClause = ' WHERE ' . implode(' AND ', $where);
                 } elseif (is_string($whereConditions)) {
-                    $where .= ' WHERE ' . $options;
+                    $where .= ' WHERE ' . $whereConditions;
                 } else {
                     throw new \Exception('Wrong parameter type of options');
                 }

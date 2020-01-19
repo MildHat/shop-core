@@ -29,6 +29,66 @@
     <?= $this->getMeta() ?>
 </head>
 <body>
+
+
+    <div id="authModal" class="modal fade bd-example-modal-xl auth-modal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Auth</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <h2>Register</h2>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="registerUsername">Username</label>
+                                        <input type="text" class="form-control form-control-lg" id="registerUsername" name="registerUsername" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerEmail">Email address</label>
+                                        <input type="email" class="form-control form-control-lg" id="registerEmail" name="registerEmail" aria-describedby="emailHelp" required>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerPassword">Password</label>
+                                        <input type="password" class="form-control form-control-lg" id="registerPassword" name="registerPassword" required>
+                                    </div>
+                                    <p id="registerPasswordError" style="display: none" class="text-danger"></p>
+                                    <div class="form-group">
+                                        <label for="registerRepeatPassword">Repeat Password</label>
+                                        <input type="password" class="form-control form-control-lg" id="registerRepeatPassword" name="registerRepeatPassword" required>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-lg" id="registerSubmit" name="registerSubmit">Register</button>
+                                </form>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <h2>Login</h2>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="loginEmail">Email address</label>
+                                        <input type="email" class="form-control form-control-lg" id="loginEmail" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="loginPassword">Password</label>
+                                        <input type="password" class="form-control form-control-lg" id="loginPassword" required>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-lg" id="loginSubmit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="page-wrapper">
         <!-- Preloader -->
         <div class="preloader"></div>
@@ -86,6 +146,11 @@
                                 <li><a href="/contact">Contact Us</a></li>
                                 <li><a href="/about">About</a></li>
                                 <li><a href="/blog">Blog</a></li>
+                                <?php if (\core\App::$session->contains('username')): ?>
+                                    <li class="auth-status"><a href="/cabinet">Cabinet</a></li>
+                                <?php else: ?>
+                                    <li class="auth-status"><a data-toggle="modal" data-target=".auth-modal">Auth</a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </nav>
@@ -279,61 +344,7 @@
     <div class="modal fade bd-example-modal-xl cart" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content cart-body">
-                <div class="modal-header mt-5 ml-5">
-                    <h2 class="modal-title">Cart</h2>
-                </div>
-                <!--Cart Section-->
-                <section class="cart-section">
-                    <div class="auto-container">
-                        <!--Cart Outer-->
-                        <div class="cart-outer">
-                            <div class="table-outer cart-table">
-
-                            </div>
-                            <div class="coupon-outer clearfix">
-<!--                                <div class="pull-left">-->
-<!--                                    <div class="apply-coupon clearfix">-->
-<!--                                        <div class="form-group clearfix">-->
-<!--                                            <input type="text" name="coupon-code" value="" placeholder="Enter Coupon Code...">-->
-<!--                                        </div>-->
-<!--                                        <div class="form-group clearfix">-->
-<!--                                            <button type="button" class="theme-btn btn-style-three">Apply Coupon</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!---->
-<!--                                </div>-->
-                                <div class="form-group pull-right">
-                                    <button type="button" class="theme-btn cart-btn btn-style-three">Update Cart</button>
-                                </div>
-                            </div>
-
-
-                            <div class="row clearfix">
-                                <div class="column pull-right col-md-5 col-sm-12 col-xs-12">
-                                    <!--Totals Table-->
-                                    <ul class="totals-table">
-                                        <li class="clearfix"><span class="col col-title">Sub-total</span><span class="col">$380.10</span></li>
-                                        <li class="clearfix"><span class="col col-title">Shipping</span>
-                                            <div class="col">
-                                                <div class="shopping-option">
-                                                    <input type="checkbox" name="free-shipping" id="free-shipping">
-                                                    <label for="free-shipping">Free Shipping</label>
-                                                </div>
-                                                <div class="shopping-option">
-                                                    <input type="checkbox" name="local-pickup" id="local-pickup">
-                                                    <label for="local-pickup">Local Pickup</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix"><span class="col col-title">Total</span><span class="col">$380.10</span></li>
-                                    </ul>
-                                    <div class="text-right"><button type="submit" class="theme-btn checkout-btn btn-style-four">Proceed to Checkout</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- End Cart Section -->
+                ...
             </div>
         </div>
     </div>
@@ -367,6 +378,9 @@
     <script src="/js/template-scripts/validate.js"></script>
 
     <script src="/js/template-scripts/script.js"></script>
+
+    <script src="/js/auth.js"></script>
+
     <script src="/js/index.js"></script>
 
 </body>
