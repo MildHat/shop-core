@@ -66,6 +66,8 @@ class AuthController extends AppController
             if ($user) {
                 if (password_verify($password, $user->password)) {
 
+                    App::$session->set('username', ucfirst($user->username));
+
                     echo 'success';
 
                 } else {
