@@ -6,6 +6,7 @@ $(document).ready(() => {
         }
 
         init = () => {
+
             if (this.products) {
                 this.render();
             } else {
@@ -27,7 +28,6 @@ $(document).ready(() => {
                             this.products.splice(this.products.indexOf(this.products[i]), 1);
                         }
                     }
-                    console.log(this.products);
                     this.setProducts(this.products);
                     // выполняешь функцию getProducts()
                     this.products = this.getProducts();
@@ -36,19 +36,8 @@ $(document).ready(() => {
 
                 });
 
-                $('.update-cart').on('click', () => {
-
-                    const id = $(this).closest('tr').data('product-id');
-                    console.log(id);
-
-                });
-
-                $('.cart-plus-product').on('click', (event) => {
-                    console.log($('.cart-quantity-input').val());
-                });
-
                 $('.cart-quantity-input').on('change', event => {
-                    event.stopPropagation();
+                    // event.stopPropagation();
                     let quantity = $(event.currentTarget).val();
                     let $tr = event.currentTarget.closest('tr');
                     let id = $tr.dataset.productid;
