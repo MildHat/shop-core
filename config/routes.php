@@ -2,6 +2,11 @@
 
 use \core\Router;
 
+
+// auth
+Router::add('^register$', ['controller' => 'auth', 'action' => 'register']);
+Router::add('^login$', ['controller' => 'auth', 'action' => 'login']);
+
 // products
 Router::add('^product/(?P<id>[0-9]+)$', ['controller' => 'product', 'action' => 'show']);
 Router::add('^shop/?(?P<page>[0-9]+)?$', ['controller' => 'product', 'action' => 'index']);
