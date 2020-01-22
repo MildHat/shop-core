@@ -9,7 +9,7 @@ Router::add('^login$', ['controller' => 'auth', 'action' => 'login']);
 
 // products
 Router::add('^product/(?P<id>[0-9]+)$', ['controller' => 'product', 'action' => 'show']);
-Router::add('^shop/?(?P<page>[0-9]+)?$', ['controller' => 'product', 'action' => 'index']);
+Router::add('^products/?(?P<page>[0-9]+)?$', ['controller' => 'product', 'action' => 'index']);
 
 // blog
 Router::add('^blog$', ['controller' => 'article', 'action' => 'index']);
