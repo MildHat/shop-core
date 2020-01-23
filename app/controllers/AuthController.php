@@ -49,19 +49,12 @@ class AuthController extends AppController
     public function loginAction()
     {
         if (isset($_POST['email'], $_POST['password'])) {
-            $email = $_POST['email'];
+            $email = (string)$_POST['email'];
             $password = $_POST['password'];
 
-            $user = $this->user->find([
-                'conditions' => [
-                    'email' => $email
-                ]
-            ]);
-            $user = $user[0];
-
-//            $user = true;
-//            $password = 'password';
-//            $oldPassword = password_hash($password, PASSWORD_DEFAULT);
+            $user = $this->user->select()->where([
+                ['email' , '=', $email]
+            ])->getOne();
 
             if ($user) {
                 if (password_verify($password, $user->password)) {
