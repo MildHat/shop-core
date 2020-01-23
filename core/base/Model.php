@@ -4,6 +4,7 @@
 namespace core\base;
 
 
+use app\models\Product;
 use core\Db;
 
 abstract class Model
@@ -11,7 +12,11 @@ abstract class Model
     protected $attributes = [];
     protected $errors = [];
     protected $rules = [];
+
+    /** @var \PDO */
     protected $db;
+
+    protected $query;
     protected $table;
 
     public function __construct()
@@ -134,6 +139,127 @@ abstract class Model
             return $result;
         }
         return false;
+    }
+
+    public function select(array $fields = [])
+    {
+        $fieldsToQuery = '';
+        if (!empty($fields)) {
+
+            foreach ($fields as $field) {
+                $fieldsToQuery .= '`' . $field . '`';
+            }
+
+        } else {
+            $fieldsToQuery .= '`*`';
+        }
+
+        $query = 'SELECT ' . $fieldsToQuery . ' FROM `' . $this->getTableName() . '`';
+        $this->query = $query;
+        return $this;
+
+    }
+
+    public function where($conditions)
+    {
+        if (!empty($conditions) && $conditions !== '') {
+            $whereClause = '';
+
+            if (is_array($conditions)) {
+
+                foreach ($conditions as $condition) {
+                    $condition[0] = '`' . $condition[0] . '`';
+                    $condition = implode(' ', $condition);
+                    $whereClause .= $condition . ' AND ';
+                }
+
+                $whereClause = substr($whereClause, 0, -5);
+
+            } elseif (is_string($conditions)) {
+                $whereClause .= $conditions;
+            }
+
+            $query = $this->query . ' WHERE ' . $whereClause;
+            $this->query = $query;
+            return $this;
+        }
+
+        return $this;
+
+    }
+
+    public function order(string $orderField)
+    {
+        $this->query .= ' ORDER BY ' . $orderField;
+        return $this;
+    }
+
+    public function limit(int $limit)
+    {
+        $this->query .= ' LIMIT ' . $limit;
+        return $this;
+    }
+
+    public function offset(int $offset)
+    {
+        if (!(strpos($this->query, 'LIMIT') === false)) {
+            $this->query .= ' OFFSET ' . $offset;
+            return $this;
+        }
+        throw new \Exception('The query ' . $this->query . ' must contain a limit');
+    }
+
+    public function get($mode = false)
+    {
+        $result = $this->db->query($this->query);
+
+        if (!$result) {
+            return $this->getQuery();
+        }
+
+        $result->setFetchMode(\PDO::FETCH_ASSOC);
+        $result = $result->fetchAll();
+
+        if ($mode) {
+            return $result;
+        }
+
+        $entities = [];
+
+        foreach ($result as $item) {
+            $entities[] = $this->morph($item);
+        }
+
+        return $entities;
+    }
+
+    public function getOne($mode = false)
+    {
+        if (!(strpos($this->query, 'LIMIT') === false)) {
+            return $this->getQuery();
+        }
+
+        $this->query .= ' LIMIT 1';
+
+        $result = $this->db->query($this->query);
+
+        if (!$result) {
+            return $this->getQuery();
+        }
+
+        $result->setFetchMode(\PDO::FETCH_ASSOC);
+        $result = $result->fetch();
+
+        if ($mode) {
+            return $result;
+        }
+
+        return $this->morph($result);
+    }
+
+    public function getQuery()
+    {
+        return $this->query;
     }
 
 }
