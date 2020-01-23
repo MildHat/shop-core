@@ -24,25 +24,17 @@ class Product extends AppModel
     public $created_at;
     public $updated_at;
 
-    public function giveProductsToPagination($page = 1, $offset = 0, $conditions = '', $order = 'ORDER BY created_at DESC') : array
+    public function giveProductsToPagination($limit = 6, $offset = 0, $order = '`created_at` DESC')
     {
-        $result = [];
-        $sql = 'SELECT * FROM products ' . $order . ' LIMIT ' . App::$app->getProperty('pagination') . ' OFFSET ' . $offset;
-        $products = $this->db->query($sql);
+        $products = $this->select()->where([
+            ['availability', '=', '1']
+        ])->order($order)->limit($limit)->offset($offset)->get();
 
-        if ($products) {
-            $products->setFetchMode(\PDO::FETCH_ASSOC);
-            $products = $products->fetchAll();
-
-            if ($products) {
-                foreach ($products as $product) {
-                    $result[] = $this->morph($product);
-                }
-            }
-
+        if (is_string($products)) {
+            return $this->getQuery();
         }
 
-        return $result;
+        return $products;
     }
 
     public function giveCountOfProducts() : int
