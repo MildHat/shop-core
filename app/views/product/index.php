@@ -56,41 +56,39 @@
 <!--                    </div>-->
                     <?php if ($products): ?>
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->availability): ?>
-                                <!-- Product Block -->
-                                <div class="product-block col-md-4 col-sm-6 col-xs-12">
-                                    <div class="inner-box">
-                                        <div class="image-box">
-                                            <a href="/product/<?= $product->id ?>"><img src="/images/uploads/products/<?= $product->main_image ?>" alt=""></a>
-                                            <?php if ($product->is_sale): ?>
-                                                <span class="tag">Sale!</span>
-                                            <?php endif; ?>
-                                            <div class="link-box">
-                                                <a href="/images/uploads/products/<?= $product->main_image ?>" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                                <a href="#"><span class="flaticon-like-1"></span></a>
-                                                <a><span data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="flaticon-shopping-bag add-to-cart"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="content-box">
-                                            <h3><a href="/product/<?= $product->id ?>"><?= ucwords($product->title) ?></a></h3>
-                                            <span class="price">
-
-                                                <!-- deleted price -->
-                                                <?php if ($product->is_sale and $product->sale_price): ?>
-                                                    <del>$<?= $product->price ?></del>
-                                                <?php endif; ?>
-
-                                                <!-- price -->
-                                                <?php if ($product->is_sale and $product->sale_price): ?>
-                                                    $<?= $product->sale_price ?>
-                                                <?php else: ?>
-                                                    $<?= $product->price ?>
-                                                <?php endif; ?>
-                                            </span>
+                            <!-- Product Block -->
+                            <div class="product-block col-md-4 col-sm-6 col-xs-12">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <a href="/product/<?= $product->id ?>"><img src="/images/uploads/products/<?= $product->main_image ?>" alt=""></a>
+                                        <?php if ($product->is_sale): ?>
+                                            <span class="tag">Sale!</span>
+                                        <?php endif; ?>
+                                        <div class="link-box">
+                                            <a href="/images/uploads/products/<?= $product->main_image ?>" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
+                                            <a href="#"><span class="flaticon-like-1"></span></a>
+                                            <a><span data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="flaticon-shopping-bag add-to-cart"></span></a>
                                         </div>
                                     </div>
+                                    <div class="content-box">
+                                        <h3><a href="/product/<?= $product->id ?>"><?= ucwords($product->title) ?></a></h3>
+                                        <span class="price">
+
+                                            <!-- deleted price -->
+                                            <?php if ($product->is_sale and $product->sale_price): ?>
+                                                <del>$<?= $product->price ?></del>
+                                            <?php endif; ?>
+
+                                            <!-- price -->
+                                            <?php if ($product->is_sale and $product->sale_price): ?>
+                                                $<?= $product->sale_price ?>
+                                            <?php else: ?>
+                                                $<?= $product->price ?>
+                                            <?php endif; ?>
+                                        </span>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
+                            </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
@@ -99,15 +97,15 @@
                 <div class="styled-pagination text-center">
                     <ul class="clearfix">
                         <?php if ($page > 1): ?>
-                            <li><a href="/shop/<?= $page - 1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                            <li><a href="/products/page-<?= $page - 1 ?>"><i class="fa fa-angle-left"></i></a></li>
                         <?php endif; ?>
 
                         <?php for ($i = 1; $i <= $amountOfPages; $i++): ?>
-                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a href="/shop/<?= $i ?>"><?= $i ?></a></li>
+                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a href="/products/page-<?= $i ?>"><?= $i ?></a></li>
                         <?php endfor; ?>
 
                         <?php if ($page < $amountOfPages): ?>
-                            <li><a href="/shop/<?= $page + 1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="/products/page-<?= $page + 1 ?>"><i class="fa fa-angle-right"></i></a></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -137,38 +135,12 @@
                     </div>
                     <?php if ($categories): ?>
                         <!-- Categories -->
-                        <div class="sidebar-widget categories">
-                            <div class="sidebar-title"><h2>Categories</h2></div>
-                            <ul class="category-list">
-                                <?php foreach ($categories as $category): ?>
-                                    <li>
-                                        <a href="#">
-                                            <?= ucwords($category->title) ?>
-                                            <?php if ($category->amountOfProducts > 0): ?>
-                                                <span>(<?= $category->amountOfProducts ?>)</span>
-                                            <?php endif; ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                        <?= $categories->getHtml() ?>
                     <?php endif; ?>
 
                     <?php if($brands): ?>
                         <!-- Brands -->
-                        <div class="sidebar-widget">
-                            <div class="sidebar-title"><h2>Brands</h2></div>
-                            <ul class="category-list">
-                                <?php foreach ($brands as $brand): ?>
-                                    <li>
-                                        <a href="#">
-                                            <?= ucwords($brand->title) ?>
-                                            <span>(06)</span>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                        <?= $brands->getHtml() ?>
                     <?php endif; ?>
 
                     <!-- Colors -->

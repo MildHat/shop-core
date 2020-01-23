@@ -8,15 +8,18 @@ use app\components\Pagination;
 use app\models\Brand;
 use app\models\Category;
 use app\models\Product;
+use app\widgets\brands\Brands;
+use app\widgets\categories\Categories;
 use core\App;
 
 class ProductController extends AppController
 {
+    /** @var Product */
+    public $product;
+
     public function __construct($route)
     {
         parent::__construct($route);
-        $this->category = new Category();
-        $this->brand = new Brand();
         $this->product = new Product();
     }
 
@@ -28,10 +31,14 @@ class ProductController extends AppController
             $page = 1;
         }
 
-        $offset = Pagination::giveOffset($page, App::$app->getProperty('pagination'));
-        $products = $this->product->giveProductsToPagination($page, $offset, 'WHERE category_id = 1');
-        $categories = $this->category->giveCategoriesWithAmountOfProducts();
-        $brands = $this->brand->find();
+        $articlesPerPage = App::$app->getProperty('pagination');
+
+        $offset = Pagination::giveOffset($page, $articlesPerPage);
+        $products = $this->product->giveProductsToPagination($articlesPerPage, $offset);
+
+        $brands = new Brands();
+        $categories = new Categories();
+
         $countOfProducts = $this->product->giveCountOfProducts();
         $amountOfPages = Pagination::giveAmountOfPages(
             $countOfProducts,
