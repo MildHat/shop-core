@@ -6,8 +6,13 @@ namespace core;
 
 class App
 {
+    /** @var Logger */
     public static $logger;
+
+    /** @var Registry */
     public static $app;
+
+    /** @var Session */
     public static $session;
 
     public function __construct()
