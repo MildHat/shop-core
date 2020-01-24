@@ -22,20 +22,15 @@ class PagesController extends AppController
 
     public function indexAction()
     {
-        $brands = $this->brand->find();
-//        $latestCollection = $this->collection->getLatestCollection();
-//        $latestCollections = $this->collection->getLatestCollections();
+        $brands = $this->brand->select()->get();
         $this->setMeta('Home page');
         $this->view = 'main';
-        $this->set(compact('brands'// ,
-            //'latestCollection',
-         //'latestCollections'
-        ));
+        $this->set(compact('brands'));
     }
 
     public function aboutAction()
     {
-        $brands = $this->brand->find();
+        $brands = $this->brand->select()->get();
         $this->set(compact('brands'));
         $this->setMeta('About page');
     }
