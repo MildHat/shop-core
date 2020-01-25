@@ -169,6 +169,7 @@ abstract class Model
 
                 foreach ($conditions as $condition) {
                     $condition[0] = '`' . $condition[0] . '`';
+                    $condition[2] = '\'' . $condition[2] . '\'';
                     $condition = implode(' ', $condition);
                     $whereClause .= $condition . ' AND ';
                 }
@@ -249,6 +250,10 @@ abstract class Model
 
         $result->setFetchMode(\PDO::FETCH_ASSOC);
         $result = $result->fetch();
+
+        if (!$result) {
+            throw new \Exception('Not found');
+        }
 
         if ($mode) {
             return $result;

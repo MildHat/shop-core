@@ -8,6 +8,7 @@ class Category extends AppModel
 {
     public $id;
     public $title;
+    public $alias;
     public $created_at;
     public $updated_at;
 

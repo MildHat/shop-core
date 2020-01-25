@@ -1,15 +1,15 @@
 <?php
 
 
-namespace app\widgets\categories;
+namespace app\widgets\Brands;
 
 
 use core\Db;
 
-class Categories
+class Brands
 {
 
-    protected $template = __DIR__ . '/template/categories.php';
+    protected $template = __DIR__ . '/template/brands.php';
     protected $table = 'categories';
     protected $data;
     protected $html;
@@ -26,7 +26,7 @@ class Categories
 
     protected function getData()
     {
-        $query = 'SELECT categories.*, count(products.id) as amountOfProducts FROM categories LEFT JOIN products ON categories.id = products.category_id WHERE products.availability = 1 GROUP BY id';
+        $query = 'SELECT brands.*, count(products.id) as amountOfProducts FROM brands LEFT JOIN products ON brands.id = products.brand_id WHERE products.availability = 1 GROUP BY id';
         $data = $this->db->query($query);
         $data->setFetchMode(\PDO::FETCH_ASSOC);
         $this->data = $data->fetchAll();

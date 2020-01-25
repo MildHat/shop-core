@@ -26,7 +26,7 @@
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="/js/template-scripts/respond.js"></script><![endif]-->
 
-    <?= $this->getMeta() ?>
+    <?php // $this->getMeta(); ?>
 </head>
 <body>
 
@@ -145,7 +145,6 @@
                                 </li>
                                 <li><a href="/contact">Contact Us</a></li>
                                 <li><a href="/about">About</a></li>
-                                <li><a href="/blog">Blog</a></li>
                                 <?php if (\core\App::$session->contains('username')): ?>
                                     <li class="auth-status"><a href="/cabinet">Cabinet</a></li>
                                 <?php else: ?>
@@ -177,9 +176,9 @@
                                 <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
                                     <li class="panel-outer">
                                         <div class="form-container">
-                                            <form method="post" action="">
+                                            <form method="post" action="/search">
                                                 <div class="form-group">
-                                                    <input type="search" name="field-name" value="" placeholder="Search Here" required>
+                                                    <input type="search" name="search" value="" placeholder="Search Here" required>
                                                     <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
                                                 </div>
                                             </form>

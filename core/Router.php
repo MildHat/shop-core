@@ -27,14 +27,19 @@ class Router
     public static function dispatch($uri)
     {
         $uri = \rtrim(self::removeQueryString($uri), '/');
+
         if (self::matchRoute($uri)) {
             $controller = 'app\controllers\\' . self::$route['prefix'] . self::$route['controller'] . 'Controller';
+
             if (\class_exists($controller)) {
                 $controllerObject = new $controller(self::$route);
                 $action = self::lowerCamelCase(self::$route['action']) . 'Action';
+
                 if (method_exists($controllerObject, $action)) {
-                    $controllerObject->$action();
-                    $controllerObject->getView();
+                    $request = new Request();
+                    $output = $controllerObject->$action($request);
+                    $controllerObject->response->content($output);
+                    $controllerObject->response->send();
                 } else {
                     throw new \Exception("Method {$controller}::{$action} not found", 404);
                 }
@@ -55,14 +60,17 @@ class Router
                         $route[$key] = $value;
                     }
                 }
+
                 if (empty($route['action'])) {
                     $route['action'] = 'index';
                 }
+
                 if (!isset($route['prefix'])) {
                     $route['prefix'] = '';
                 } else {
                     $route['prefix'] .= '\\';
                 }
+
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
                 return true;

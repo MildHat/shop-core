@@ -4,7 +4,7 @@
         <ul class="category-list">
             <?php foreach ($this->data as $brand): ?>
                 <li>
-                    <a href="#">
+                    <a href="/brand/<?= $brand['alias'] ?>">
                         <?= ucwords($brand['title']) ?>
                         <?php if ($brand['amountOfProducts'] > 0): ?>
                             <span>(<?= $brand['amountOfProducts'] ?>)</span>

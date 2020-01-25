@@ -20,7 +20,6 @@ $(document).ready(() => {
         initListeners = () => {
             if (this.products) {
                 $('.remove-item-in-cart').on('click', event => {
-                    console.log(this.products);
                     // тут удаляешь из localStorage по id
                     let id = event.target.dataset.id;
                     for (let i = 0; i < this.products.length; i++) {
@@ -37,7 +36,6 @@ $(document).ready(() => {
                 });
 
                 $('.cart-quantity-input').on('change', event => {
-                    // event.stopPropagation();
                     let quantity = $(event.currentTarget).val();
                     let $tr = event.currentTarget.closest('tr');
                     let id = $tr.dataset.productid;
@@ -202,11 +200,8 @@ $(document).ready(() => {
         render() {
             this.renderBasketCount();
 
-
-            console.log(this.products);
             if (this.products !== null) {
                 if (this.products.length > 0) {
-                    console.log(1);
                     this.renderCart();
                 } else {
                     $('.cart-body').html('<h2 class="mt-5 ml-5 mb-5 display-1">Empty cart</h2>');

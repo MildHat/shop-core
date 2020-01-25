@@ -32,30 +32,10 @@
                                 <?= $product->short_description ?>
                             </div>
 
-                            <div class="color-and-size clearfix">
-                                <div class="color-option pull-left">
-                                    <h5>Color :</h5>
-                                    <div class="color-list-two">
-                                        <span class="brown active"></span>
-                                        <span class="light-brown"></span>
-                                        <span class="dark-brown"></span>
-                                    </div>
-                                </div>
-
-                                <div class="size-option pull-left">
-                                    <h5>Size : </h5>
-                                    <span>6</span>
-                                    <span class="active">7</span>
-                                    <span>8</span>
-                                </div>
-                            </div>
-
                             <div class="other-options clearfix">
                                 <div class="item-quantity">
                                     <div class="quantity-spinner">
-<!--                                        <button type="button" class="minus minus-quantity">-</button>-->
                                         <input type="text" name="product" placeholder="1" class="prod_qty quantity-input">
-<!--                                        <button type="button" class="plus plus-quantity">+</button>-->
                                     </div>
                                 </div>
                                 <button type="button" data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="theme-btn btn-style-three pull-left add-to-cart"><i class="flaticon-shopping-bag"></i> Add to Cart</button>
@@ -63,16 +43,12 @@
                             </div>
 
                             <ul class="info-list">
-                                <li><span>Code : </span><?= $product->code ?></li>
-                                <li><span>Categories : </span> <a href="#">Accessories</a>, <a href="#">Catalog</a>, <a href="#">Sidebag</a>, <a href="#">Backpacks</a></li>
-<!--                                <li><span>Share : </span>-->
-<!--                                    <ul class="social-links-one">-->
-<!--                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-<!--                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-<!--                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>-->
-<!--                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
+                                <li>
+                                    <span>Code : </span><?= $product->code ?>
+                                </li>
+                                <li>
+                                    <span>Category : </span> <a href="/category/">Accessories</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -177,94 +153,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Related Post -->
-        <div class="related-posts">
-            <h3>Related Products</h3>
-
-            <div class="row clearfix">
-                <!-- Product Block -->
-                <div class="product-block col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <a href="product-details.html"><img src="/images/resource/products/17.jpg" alt=""></a>
-                            <div class="link-box">
-                                <a href="/images/resource/products/17.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#"><span class="flaticon-like-1"></span></a>
-                                <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <h3><a href="product-details.html">Casual Hat</a></h3>
-                            <span class="price">$80.00</span>
-                            <div class="color-list">
-                                <span class="brown active"></span>
-                                <span class="gray"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Block -->
-                <div class="product-block col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <a href="product-details.html"><img src="/images/resource/products/18.jpg" alt=""></a>
-                            <div class="link-box">
-                                <a href="/images/resource/products/18.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#"><span class="flaticon-like-1"></span></a>
-                                <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <h3><a href="product-details.html">Denim Pants</a></h3>
-                            <span class="price">$155.70</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Block -->
-                <div class="product-block col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <a href="product-details.html"><img src="/images/resource/products/19.jpg" alt=""></a>
-                            <span class="tag">Sale!</span>
-                            <div class="link-box">
-                                <a href="/images/resource/products/19.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#"><span class="flaticon-like-1"></span></a>
-                                <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <h3><a href="product-details.html">Fancy Top</a></h3>
-                            <span class="price">$172.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Block -->
-                <div class="product-block col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <a href="product-details.html"><img src="/images/resource/products/20.jpg" alt=""></a>
-                            <span class="tag">Sale!</span>
-                            <div class="link-box">
-                                <a href="/images/resource/products/20.jpg" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#"><span class="flaticon-like-1"></span></a>
-                                <a href="shopping-cart.html"><span class="flaticon-shopping-bag"></span></a>
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <h3><a href="product-details.html">Trendy Sidebag</a></h3>
-                            <span class="price"><del>$26.00</del> $22.10</span>
-                            <div class="color-list">
-                                <span class="gray active"></span>
-                                <span class="dark-gray"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?= $relatedProducts->getHtml() ?>
     </div>
 </section>

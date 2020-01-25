@@ -27,7 +27,7 @@ $(document).ready(() => {
                     }
                 },
                 error: (error) => {
-                    console.log(error.statusText);
+                    console.log(error);
                 }
             });
 

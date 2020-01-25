@@ -7,12 +7,18 @@ use \core\Router;
 Router::add('^register$', ['controller' => 'auth', 'action' => 'register']);
 Router::add('^login$', ['controller' => 'auth', 'action' => 'login']);
 
-// products
-Router::add('^product/(?P<id>[0-9]+)$', ['controller' => 'product', 'action' => 'show']);
-Router::add('^products/?((page-)(?P<page>[0-9]+))?$', ['controller' => 'product', 'action' => 'index']);
+// search
+Router::add('^search$', ['controller' => 'product', 'action' => 'search']);
 
-// blog
-Router::add('^blog$', ['controller' => 'article', 'action' => 'index']);
+// brands
+Router::add('^brand/(?P<alias>[a-z0-9-]+)$', ['controller' => 'brand', 'action' => 'show']);
+
+// categories
+Router::add('^category/(?P<alias>[a-z0-9-]+)$', ['controller' => 'category', 'action' => 'show']);
+
+// products
+Router::add('^product/(?P<alias>[a-z0-9-]+)$', ['controller' => 'product', 'action' => 'show']);
+Router::add('^products/?((page-)(?P<page>[0-9]+))?$', ['controller' => 'product', 'action' => 'index']);
 
 // contact
 Router::add('^contact$', ['controller' => 'pages', 'action' => 'contact']);

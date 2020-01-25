@@ -6,38 +6,37 @@ namespace app\controllers;
 
 use app\models\Brand;
 use app\models\Collection;
+use core\base\View\ViewFactory;
+use core\Response;
 
 class PagesController extends AppController
 {
 
     public $brand;
-    public $collection;
 
     public function __construct($route)
     {
         parent::__construct($route);
         $this->brand = new Brand();
-        $this->collection = new Collection();
     }
 
     public function indexAction()
     {
         $brands = $this->brand->select()->get();
-        $this->setMeta('Home page');
-        $this->view = 'main';
-        $this->set(compact('brands'));
+
+        return $this->view->render('pages/main', compact('brands'));
     }
 
     public function aboutAction()
     {
         $brands = $this->brand->select()->get();
-        $this->set(compact('brands'));
-        $this->setMeta('About page');
+
+        return $this->view->render('pages/about', compact('brands'));
     }
 
     public function contactAction()
     {
-        $this->setMeta('Contact page');
+        return $this->view->render('pages/contact');
     }
 
 }

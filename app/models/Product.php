@@ -10,6 +10,7 @@ class Product extends AppModel
 {
     public $id;
     public $title;
+    public $alias;
     public $short_description;
     public $description;
     public $sale_price;
@@ -32,6 +33,21 @@ class Product extends AppModel
 
         if (is_string($products)) {
             return $this->getQuery();
+        }
+
+        return $products;
+    }
+
+    public function search(string $pattern)
+    {
+        $products = $this->select()->where('title LIKE \'%' . $pattern . '%\'')->get();
+
+        if (is_string($products)) {
+            throw new \Exception('Error');
+        }
+
+        if (!$products) {
+            throw new \Exception('Not found');
         }
 
         return $products;

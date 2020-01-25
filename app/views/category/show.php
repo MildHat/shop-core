@@ -1,15 +1,6 @@
-<!--Page Title-->
-<section class="page-title" style="background-image:url(/images/background/shop.png);">
-    <div class="auto-container">
-        <h1>Shop</h1>
-        <ul class="bread-crumb clearfix">
-            <li><a href="/">Home </a></li>
-            <li>Shop</li>
-        </ul>
-    </div>
-</section>
-<!--End Page Title-->
-
+<div class="container mt-5">
+    <h2><?= ucwords($category->title) ?></h2>
+</div>
 <!--Sidebar Page Container-->
 <div class="sidebar-page-container">
     <div class="auto-container">
@@ -18,7 +9,7 @@
             <!--content side-->
             <div class="content-side col-lg-9 col-md-8 col-sm-12 col-xs-12">
                 <div class="shop-upper-box clearfix">
-                    <div class="items-label pull-left">Showing <?= $offset + 1 ?>-<?= $offset + count($products) ?> of <?= $countOfProducts ?> results
+                    <div class="items-label pull-left"><!--Showing <?//= $offset + 1 ?> <?//= $offset + count($products) ?> of <?//= $countOfProducts ?> results-->
                         <div class="link-box">
                             <a href="shop-grid.html" class="active"><i class="fa fa-th"></i></a>
                             <a href="shop-list.html"><i class="fa fa-th-list"></i></a>
@@ -74,22 +65,22 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- Styled Pagination -->
-                <div class="styled-pagination text-center">
-                    <ul class="clearfix">
-                        <?php if ($page > 1): ?>
-                            <li><a href="/products/page-<?= $page - 1 ?>"><i class="fa fa-angle-left"></i></a></li>
-                        <?php endif; ?>
-
-                        <?php for ($i = 1; $i <= $amountOfPages; $i++): ?>
-                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a href="/products/page-<?= $i ?>"><?= $i ?></a></li>
-                        <?php endfor; ?>
-
-                        <?php if ($page < $amountOfPages): ?>
-                            <li><a href="/products/page-<?= $page + 1 ?>"><i class="fa fa-angle-right"></i></a></li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
+<!--                Styled Pagination -->
+<!--                <div class="styled-pagination text-center">-->
+<!--                    <ul class="clearfix">-->
+<!--                        --><?php //if ($page > 1): ?>
+<!--                            <li><a href="/products/page---><?//= $page - 1 ?><!--"><i class="fa fa-angle-left"></i></a></li>-->
+<!--                        --><?php //endif; ?>
+<!---->
+<!--                        --><?php //for ($i = 1; $i <= $amountOfPages; $i++): ?>
+<!--                            <li class="--><?php //if ($page === $i) echo 'active'; ?><!--"><a href="/products/page---><?//= $i ?><!--">--><?//= $i ?><!--</a></li>-->
+<!--                        --><?php //endfor; ?>
+<!---->
+<!--                        --><?php //if ($page < $amountOfPages): ?>
+<!--                            <li><a href="/products/page---><?//= $page + 1 ?><!--"><i class="fa fa-angle-right"></i></a></li>-->
+<!--                        --><?php //endif; ?>
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
 
             <!--Sidebar Side-->

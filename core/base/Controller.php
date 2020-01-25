@@ -4,6 +4,9 @@
 namespace core\base;
 
 
+use core\base\View\ViewFactory;
+use core\Response;
+
 abstract class Controller
 {
 
@@ -16,13 +19,17 @@ abstract class Controller
     public $data = [];
     public $meta = ['title' => '', 'description' => '', 'keywords' => ''];
 
+    /** @var Response */
+    public $response;
+
     public function __construct($route)
     {
         $this->route = $route;
         $this->controller = $route['controller'];
         $this->model = $route['controller'];
-        $this->view = $route['action'];
         $this->prefix = $route['prefix'];
+        $this->view = new ViewFactory();
+        $this->response = new Response();
     }
 
     public function getView()

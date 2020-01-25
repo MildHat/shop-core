@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\models\User;
 use core\App;
+use core\Request;
 
 class AuthController extends AppController
 {
@@ -19,12 +20,12 @@ class AuthController extends AppController
     }
 
 
-    public function registerAction()
+    public function registerAction(Request $request)
     {
-        if (isset($_POST['email'], $_POST['username'], $_POST['password'])) {
-            $email = $_POST['email'];
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+        if ($request->post('email', 'boolean') && $request->post('username', 'boolean') && $request->post('password', 'boolean')) {
+            $email = $request->post('email', 'string');
+            $username = $request->post('username', 'string');
+            $password = $request->post('password', 'string');
 
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $newUser = new User();
@@ -35,33 +36,30 @@ class AuthController extends AppController
 
                 App::$session->set('username', ucfirst($username));
 
-                echo 'success';
+                return 'success';
             } else {
-                throw new \Exception('error', 422);
+                throw new \Exception('error in email', 422);
             }
         } else {
-            throw new \Exception('error', 422);
+            throw new \Exception('error in fields', 422);
         }
 
-        $this->layout = false;
     }
 
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        if (isset($_POST['email'], $_POST['password'])) {
-            $email = (string)$_POST['email'];
-            $password = $_POST['password'];
+        if ($request->post('email', 'boolean') && $request->post('password', 'boolean')) {
+            $email = $request->post('email', 'string');
+            $password = $request->post('password', 'string');
 
-            $user = $this->user->select()->where([
-                ['email' , '=', $email]
-            ])->getOne();
+            $user = $this->user->select()->where([['email' , '=', $email]])->getOne();
 
             if ($user) {
                 if (password_verify($password, $user->password)) {
 
                     App::$session->set('username', ucfirst($user->username));
 
-                    echo 'success';
+                    return 'success';
 
                 } else {
                     throw new \Exception('error', 422);
@@ -75,7 +73,6 @@ class AuthController extends AppController
             throw new \Exception('error', 422);
         }
 
-        $this->layout = false;
     }
 
 }
