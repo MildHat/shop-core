@@ -110,9 +110,13 @@
                                 <ul class="qty">
                                     <?php $total = 0; ?>
                                     <?php foreach ($productsInCart as $product): ?>
+                                        <?php
+                                            $totalPrice = $product['price'] * $product['quantity'];
+                                            $total += $totalPrice;
+                                        ?>
                                         <li class="clearfix">
                                             <?= $product['title'] ?> × <?= $product['quantity'] ?>
-                                            <span>$<?php echo $total += $product['price'] * $product['quantity']; ?></span></li>
+                                            <span>$<?= $totalPrice ?></span></li>
                                     <?php endforeach; ?>
                                 </ul>
                                 <ul class="total">
