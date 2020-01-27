@@ -3,6 +3,9 @@
 use \core\Router;
 
 
+// order
+Router::add('^checkout$', ['controller' => 'order']);
+
 // auth
 Router::add('^register$', ['controller' => 'auth', 'action' => 'register']);
 Router::add('^login$', ['controller' => 'auth', 'action' => 'login']);

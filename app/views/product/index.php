@@ -49,7 +49,21 @@
                                         <div class="link-box">
                                             <a href="/images/uploads/products/<?= $product->main_image ?>" class="lightbox-image" data-fancybox="gallery"><span class="flaticon-eye-1"></span></a>
                                             <a href="#"><span class="flaticon-like-1"></span></a>
-                                            <a><span data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="flaticon-shopping-bag add-to-cart"></span></a>
+                                            <a>
+                                                <span data-link="/product/<?= $product->alias ?>"
+                                                      data-id="<?= $product->id ?>"
+                                                      data-title="<?= ucwords($product->title) ?>"
+                                                      data-price="
+                                                          <?php if ($product->is_sale and $product->sale_price): ?>
+                                                              <?= $product->sale_price ?>
+                                                          <?php else: ?>
+                                                              <?= $product->price ?>
+                                                          <?php endif; ?>
+                                                      "
+                                                      data-image="<?= $product->small_image ?>"
+                                                      data-quantity="1" class="flaticon-shopping-bag add-to-cart">
+                                                </span>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="content-box">
@@ -82,7 +96,7 @@
                         <?php endif; ?>
 
                         <?php for ($i = 1; $i <= $amountOfPages; $i++): ?>
-                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a href="/products/page-<?= $i ?>"><?= $i ?></a></li>
+                            <li class="<?php if ($page === $i) echo 'active'; ?>"><a <?php if ($page !== $i) echo 'href="/products/page-' . $i . '"'; ?>><?= $i ?></a></li>
                         <?php endfor; ?>
 
                         <?php if ($page < $amountOfPages): ?>

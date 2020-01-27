@@ -38,7 +38,22 @@
                                         <input type="text" name="product" placeholder="1" class="prod_qty quantity-input">
                                     </div>
                                 </div>
-                                <button type="button" data-id="<?= $product->id ?>" data-title="<?= ucwords($product->title) ?>" data-price="<?php if ($product->is_sale and $product->sale_price) { echo $product->sale_price; } else { echo $product->price; } ?>" data-image="<?= $product->small_image ?>" data-quantity="1" class="theme-btn btn-style-three pull-left add-to-cart"><i class="flaticon-shopping-bag"></i> Add to Cart</button>
+                                <button type="button"
+                                        data-link="/product/<?= $product->alias ?>"
+                                        data-id="<?= $product->id ?>"
+                                        data-title="<?= ucwords($product->title) ?>"
+                                        data-price="
+                                            <?php if ($product->is_sale and $product->sale_price): ?>
+                                                <?= $product->sale_price ?>
+                                            <?php else: ?>
+                                                <?= $product->price ?>
+                                            <?php endif; ?>
+                                        "
+                                        data-image="<?= $product->small_image ?>"
+                                        data-quantity="1"
+                                        class="theme-btn btn-style-three pull-left add-to-cart">
+                                    <i class="flaticon-shopping-bag"></i> Add to Cart
+                                </button>
                                 <div class="like pull-left"><a href="shopping-cart.html"><i class="flaticon-like"></i></a></div>
                             </div>
 

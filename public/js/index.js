@@ -52,6 +52,23 @@ $(document).ready(() => {
                     this.initListeners();
 
                 });
+
+                $('.checkout').on('click', () => {
+                    let data = {
+                        data: JSON.stringify(this.getProducts())
+                    };
+                    console.log(data);
+                    $.ajax({
+                        url: '/cart/add',
+                        type: 'POST',
+                        data: data,
+                        success: response => {
+                            if (response === 'ok') {
+                                window.location = '/checkout';
+                            }
+                        },
+                    });
+                });
             }
         };
 
@@ -60,9 +77,10 @@ $(document).ready(() => {
             $('.add-to-cart').on('click', event => {
                 let id = event.target.dataset.id;
                 let title = event.target.dataset.title;
-                let price = event.target.dataset.price;
+                let price = event.target.dataset.price.trim();
                 let smallImage = event.target.dataset.image;
                 let quantity = Number(event.target.dataset.quantity);
+                let link = event.target.dataset.link;
 
                 if (!this.products) {
                     let product = [{
@@ -70,7 +88,8 @@ $(document).ready(() => {
                         title: title,
                         price: price,
                         smallImage: smallImage,
-                        quantity: quantity
+                        quantity: quantity,
+                        link: link
                     }];
 
                     this.setProducts(product);
@@ -91,7 +110,8 @@ $(document).ready(() => {
                             title: title,
                             price: price,
                             smallImage: smallImage,
-                            quantity: quantity
+                            quantity: quantity,
+                            link: link
                         };
                         this.products = [...this.products, product];
                     }
@@ -153,7 +173,7 @@ $(document).ready(() => {
                                     <ul class="totals-table">
                                         <li class="clearfix"><span class="col col-title">Total</span><span class="col total-price">$${ this.countTotal() }</span></li>
                                     </ul>
-                                    <div class="text-right"><button type="submit" class="theme-btn checkout-btn btn-style-four">Proceed to Checkout</button></div>
+                                    <div class="text-right"><button type="submit" class="theme-btn checkout-btn btn-style-four checkout">Proceed to Checkout</button></div>
                                 </div>
                             </div>
                         </div>

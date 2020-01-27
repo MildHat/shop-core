@@ -5700,6 +5700,14 @@ a.ui-button:active, .ui-button:active,
 	font-weight: 400;
 }
 
+.order-box .total li .total-price {
+	position: relative;
+	font-size: 18px;
+	line-height: 20px;
+	color: #d4b196;
+	font-weight: 400;
+}
+
 .order-box .total li span{
 	float: right;
 	font-size: 15px;

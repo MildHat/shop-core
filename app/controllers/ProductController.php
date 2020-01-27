@@ -5,8 +5,6 @@ namespace app\controllers;
 
 
 use app\components\Pagination;
-use app\models\Brand;
-use app\models\Category;
 use app\models\Product;
 use app\widgets\Brands\Brands;
 use app\widgets\Categories\Categories;
@@ -28,25 +26,22 @@ class ProductController extends AppController
     public function indexAction(Request $request)
     {
 
-        if (isset($this->route['page'])) {
-            $page = (int) $this->route['page'];
-        } else {
-            $page = 1;
-        }
-
+        $page = isset($this->route['page']) ? (int)$this->route['page'] : 1;
         $articlesPerPage = App::$app->getProperty('pagination');
+        $countOfProducts = $this->product->giveCountOfProducts();
 
-        $offset = Pagination::giveOffset($page, $articlesPerPage);
+        $pagination = new Pagination($page, $articlesPerPage, $countOfProducts);
+
+        $offset = $pagination->getOffset();
+        $amountOfPages = $pagination->getCountPages();
+
         $products = $this->product->giveProductsToPagination($articlesPerPage, $offset);
 
         $brands = new Brands();
         $categories = new Categories();
 
-        $countOfProducts = $this->product->giveCountOfProducts();
-        $amountOfPages = Pagination::giveAmountOfPages(
-            $countOfProducts,
-            App::$app->getProperty('pagination')
-        );
+
+
 
         return $this->view->render('product/index',
             compact('categories', 'brands', 'products', 'page', 'amountOfPages', 'countOfProducts', 'offset'));
