@@ -36,8 +36,7 @@ class Router
                 $action = self::lowerCamelCase(self::$route['action']) . 'Action';
 
                 if (method_exists($controllerObject, $action)) {
-                    $request = new Request();
-                    $output = $controllerObject->$action($request);
+                    $output = $controllerObject->$action();
                     $controllerObject->response->content($output);
                     $controllerObject->response->send();
                 } else {

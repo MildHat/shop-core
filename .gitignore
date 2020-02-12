@@ -4,3 +4,4 @@
 /lescons/
 /composer.lock
 /.DS_Store
+/config/config_db.php

@@ -23,7 +23,7 @@ class ProductController extends AppController
         $this->product = new Product();
     }
 
-    public function indexAction(Request $request)
+    public function indexAction()
     {
 
         $page = isset($this->route['page']) ? (int)$this->route['page'] : 1;
@@ -40,23 +40,19 @@ class ProductController extends AppController
         $brands = new Brands();
         $categories = new Categories();
 
-
-
-
         return $this->view->render('product/index',
             compact('categories', 'brands', 'products', 'page', 'amountOfPages', 'countOfProducts', 'offset'));
 
     }
 
-    public function showAction(Request $request)
+    public function showAction()
     {
-        try {
-            $product = $this->product->select()->where([
-                ['alias', '=', $this->route['alias']]
-            ])->getOne();
-        } catch (\Exception $e) {
+        $product = $this->product->select()->where([
+            ['alias', '=', $this->route['alias']]
+        ])->getOne();
+
+        if (!$product)
             throw new \Exception('Page not found', 404);
-        }
 
         $relatedProducts = new RelatedProducts($product->id);
 
@@ -64,19 +60,20 @@ class ProductController extends AppController
 
     }
 
-    public function searchAction(Request $request)
+    public function searchAction()
     {
 
-        if ($request->post('search', 'boolean')) {
-            try {
-                $products = $this->product->search($request->post('search'));
-            } catch (\Exception $e) {
+        if ($this->request->post('search', 'boolean')) {
+
+            $products = $this->product->search($this->request->post('search'));
+
+            if (!$products) {
                 $result = 'Nothing';
                 return $this->view->render('product/search', compact('result'));
             }
+
             $brands = new Brands();
             $categories = new Categories();
-
 
             return $this->view->render('product/search', compact('products', 'brands', 'categories'));
         }

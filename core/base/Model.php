@@ -252,7 +252,7 @@ abstract class Model
         $result = $result->fetch();
 
         if (!$result) {
-            throw new \Exception('Not found');
+            return false;
         }
 
         if ($mode) {

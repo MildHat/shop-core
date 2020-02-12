@@ -21,20 +21,20 @@ class OrderController extends AppController
         $this->response->redirect();
     }
 
-    public function saveAction(Request $request)
+    public function saveAction()
     {
         $data = [];
-        $data['firstName'] = $request->post('f_name');
-        $data['secondName'] = $request->post('s_name');
-        $data['companyName'] = $request->post('company_name');
-        $data['country'] = $request->post('country');
-        $data['address'] = $request->post('address');
-        $data['city'] = $request->post('city');
-        $data['state'] = $request->post('state');
-        $data['postalCode'] = $request->post('postal_code');
-        $data['phoneNumber'] = $request->post('phone_number');
-        $data['email'] = $request->post('email');
-        $data['additional'] = $request->post('additional');
+        $data['firstName'] = $this->request->post('f_name');
+        $data['secondName'] = $this->request->post('s_name');
+        $data['companyName'] = $this->request->post('company_name');
+        $data['country'] = $this->request->post('country');
+        $data['address'] = $this->request->post('address');
+        $data['city'] = $this->request->post('city');
+        $data['state'] = $this->request->post('state');
+        $data['postalCode'] = $this->request->post('postal_code');
+        $data['phoneNumber'] = $this->request->post('phone_number');
+        $data['email'] = $this->request->post('email');
+        $data['additional'] = $this->request->post('additional');
 
         $address = $data['country'] . ', ' . $data['state'] . ', ' . $data['city'] . ', ' . $data['address'] . ', ' . $data['postalCode'];
         return var_dump($address);

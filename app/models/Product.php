@@ -43,11 +43,11 @@ class Product extends AppModel
         $products = $this->select()->where('title LIKE \'%' . $pattern . '%\'')->get();
 
         if (is_string($products)) {
-            throw new \Exception('Error');
+            return false;
         }
 
         if (!$products) {
-            throw new \Exception('Not found');
+            return false;
         }
 
         return $products;
