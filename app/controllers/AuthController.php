@@ -18,7 +18,7 @@ class AuthController extends AppController
     /** @var UserValidation */
     public UserValidation $userValidation;
 
-    public function __construct($route, $request)
+    public function __construct($route)
     {
         parent::__construct($route);
         $this->user = new User();
@@ -26,12 +26,12 @@ class AuthController extends AppController
     }
 
 
-    public function registerAction(Request $request)
+    public function registerAction()
     {
         if ($this->userValidation->validateUserRegistration()) {
-            $email = $request->post('email', 'string');
-            $username = $request->post('username', 'string');
-            $password = $request->post('password', 'string');
+            $email = $this->request->post('email', 'string');
+            $username = $this->request->post('username', 'string');
+            $password = $this->request->post('password', 'string');
 
             $newUser = new User();
             $newUser->email = $email;
@@ -47,11 +47,11 @@ class AuthController extends AppController
         throw new \Exception('error in fields', 422);
     }
 
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         if ($this->userValidation->validateUserRegistration()) {
-            $email = $request->post('email', 'string');
-            $password = $request->post('password', 'string');
+            $email = $this->request->post('email', 'string');
+            $password = $this->request->post('password', 'string');
 
             $user = $this->user->select()->where([['email' , '=', $email]])->getOne();
 
