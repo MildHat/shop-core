@@ -7,7 +7,6 @@ namespace app\controllers;
 use app\components\UserValidation;
 use app\models\User;
 use core\App;
-use core\Request;
 
 class AuthController extends AppController
 {
@@ -25,31 +24,21 @@ class AuthController extends AppController
         $this->userValidation = new UserValidation($this->request);
     }
 
-
     public function registerAction()
     {
         if ($this->userValidation->validateUserRegistration()) {
-            $email = $this->request->post('email', 'string');
-            $username = $this->request->post('username', 'string');
-            $password = $this->request->post('password', 'string');
-
-            $newUser = new User();
-            $newUser->email = $email;
-            $newUser->username = $username;
-            $newUser->password = password_hash($password, PASSWORD_DEFAULT);
-            $newUser->save();
-
-            App::$session->set('username', ucfirst($username));
-
-            return 'success';
+            if ($this->user->createUser($this->request)) {
+                App::$session->set('username', $this->request->post('username'));
+                return 'success';
+            }
         }
 
-        throw new \Exception('error in fields', 422);
+        $this->response->redirect();
     }
 
     public function loginAction()
     {
-        if ($this->userValidation->validateUserRegistration()) {
+        if ($this->userValidation->validateUserLogin()) {
             $email = $this->request->post('email', 'string');
             $password = $this->request->post('password', 'string');
 
@@ -60,7 +49,8 @@ class AuthController extends AppController
                 return 'success';
             }
         }
-        throw new \Exception('error', 422);
+
+        $this->response->redirect();
 
     }
 
