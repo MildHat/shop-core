@@ -29,7 +29,7 @@ class AuthController extends AppController
         if ($this->userValidation->validateUserRegistration()) {
             if ($this->user->createUser($this->request)) {
                 App::$session->set('username', $this->request->post('username'));
-                return 'success';
+                return App::$app->getProperty('responses')['success'];
             }
         }
 
@@ -46,12 +46,11 @@ class AuthController extends AppController
 
             if ($user && password_verify($password, $user->password)) {
                 App::$session->set('username', ucfirst($user->username));
-                return 'success';
+                return App::$app->getProperty('responses')['success'];
             }
         }
 
         $this->response->redirect();
-
     }
 
 }

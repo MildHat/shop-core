@@ -19,12 +19,7 @@ $(document).ready(() => {
                 type: 'POST',
                 data: data,
                 success: (response) => {
-                    if (response === 'success') {
-                        $(document.body).removeClass("modal-open");
-                        $('#authModal').removeClass('show');
-                        $('#authModal').modal('toggle');
-                        $('.auth-status').html('<a href="/cabinet">Cabinet</a>');
-                    }
+                    onSuccess(response);
                 },
                 error: (error) => {
                     console.log(error);
@@ -54,13 +49,7 @@ $(document).ready(() => {
             type: 'POST',
             data: data,
             success: (response) => {
-                console.log(response);
-                if (response === 'success') {
-                    $(document.body).removeClass("modal-open");
-                    $('#authModal').removeClass('show');
-                    $('#authModal').modal('toggle');
-                    $('.auth-status').html('<a href="/cabinet">Cabinet</a>');
-                }
+                onSuccess(response);
             },
             error: (error) => {
                 console.log(error.statusText);
@@ -76,5 +65,15 @@ $(document).ready(() => {
         $('#registerPasswordError').html('');
 
     });
+
+    const onSuccess = response => {
+        response = JSON.parse(response);
+        if (response.code === 200) {
+            $(document.body).removeClass("modal-open");
+            $('#authModal').removeClass('show');
+            $('#authModal').modal('toggle');
+            $('.auth-status').html('<a href="/cabinet">Cabinet</a>');
+        }
+    };
 
 });
