@@ -14,7 +14,7 @@ class ViewFactory
      *
      * @param string
      * @param array
-     * @return ViewInterface
+     * @return View
      */
     public function render(string $viewPath, array $data = [])
     {
