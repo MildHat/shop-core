@@ -12,10 +12,10 @@ use app\widgets\Categories\Categories;
 class BrandController extends AppController
 {
     /** @var Product */
-    public $product;
+    public Product $product;
 
     /** @var Brand */
-    public $brand;
+    public Brand $brand;
 
     public function __construct($route)
     {
@@ -26,13 +26,12 @@ class BrandController extends AppController
 
     public function showAction()
     {
-        try {
-            $brand = $this->brand->select()->where([
+        $brand = $this->brand->select()->where([
                 ['alias', '=', $this->route['alias']]
             ])->getOne();
-        } catch (\Exception $e) {
+
+        if (!$brand)
             throw new \Exception('Page not found', 404);
-        }
 
         $categories = new Categories();
         $brands = new Brands();
@@ -41,6 +40,9 @@ class BrandController extends AppController
             ['brand_id', '=', $brand->id]
         ])->get();
 
-        return $this->view->render('brand/show', compact('brand', 'products', 'brands', 'categories'));
+        return $this->view->render(
+            'brand/show',
+            compact('brand', 'products', 'brands', 'categories')
+        );
     }
 }

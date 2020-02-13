@@ -13,10 +13,10 @@ class CategoryController extends AppController
 {
 
     /** @var Product */
-    public $product;
+    public Product $product;
 
     /** @var Category */
-    public $category;
+    public Category $category;
 
     public function __construct($route)
     {
@@ -27,21 +27,22 @@ class CategoryController extends AppController
 
     public function showAction()
     {
-        try {
-            $category = $this->category->select()->where([
+        $category = $this->category->select()->where([
                 ['alias', '=', $this->route['alias']]
             ])->getOne();
-        } catch (\Exception $e) {
+
+        if (!$category)
             throw new \Exception('Page not found', 404);
-        }
 
         $categories = new Categories();
         $brands = new Brands();
-
         $products = $this->product->select()->where([
             ['category_id', '=', $category->id]
         ])->get();
 
-        return $this->view->render('category/show', compact('category', 'products', 'brands', 'categories'));
+        return $this->view->render(
+            'category/show',
+            compact('category', 'products', 'brands', 'categories')
+        );
     }
 }

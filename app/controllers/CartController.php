@@ -5,17 +5,17 @@ namespace app\controllers;
 
 
 use core\App;
-use core\Request;
 
 class CartController extends AppController
 {
-    public function addAction(Request $request)
+    public function addAction()
     {
-        if ($request->post('data', 'boolean')) {
+        if ($this->request->post('data', 'boolean')) {
 
-            $cartItems = json_decode($request->post('data'), true);
-
-            App::$session->set('cartData', $cartItems);
+            App::$session->set(
+                'cartData',
+                json_decode($this->request->post('data'), true)
+            );
 
             return 'ok';
         }

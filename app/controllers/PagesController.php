@@ -5,14 +5,12 @@ namespace app\controllers;
 
 
 use app\models\Brand;
-use app\models\Collection;
-use core\base\View\ViewFactory;
-use core\Response;
 
 class PagesController extends AppController
 {
 
-    public $brand;
+    /** @var Brand */
+    public Brand $brand;
 
     public function __construct($route)
     {
