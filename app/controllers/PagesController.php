@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Brand;
+use core\App;
 
 class PagesController extends AppController
 {
@@ -35,6 +36,12 @@ class PagesController extends AppController
     public function contactAction()
     {
         return $this->view->render('pages/contact');
+    }
+
+    public function changeLanguageAction()
+    {
+        App::$session->set('USER_LANGUAGE', $this->request->post('lang'));
+        return App::$app->getProperty('responses')['success'];
     }
 
 }

@@ -1,6 +1,6 @@
 <?php if($this->data): ?>
     <div class="sidebar-widget">
-        <div class="sidebar-title"><h2>Brands</h2></div>
+        <div class="sidebar-title"><h2><?= BRANDS ?></h2></div>
         <ul class="category-list">
             <?php foreach ($this->data as $brand): ?>
                 <li>

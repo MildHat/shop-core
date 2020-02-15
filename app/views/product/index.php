@@ -1,10 +1,10 @@
 <!--Page Title-->
 <section class="page-title" style="background-image:url(/images/background/shop.png);">
     <div class="auto-container">
-        <h1>Shop</h1>
+        <h1><?= SHOP ?></h1>
         <ul class="bread-crumb clearfix">
-            <li><a href="/">Home </a></li>
-            <li>Shop</li>
+            <li><a href="/"><?= HOME ?> </a></li>
+            <li><?= SHOP ?></li>
         </ul>
     </div>
 </section>

@@ -26,7 +26,6 @@
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="/js/template-scripts/respond.js"></script><![endif]-->
 
-    <?php // $this->getMeta(); ?>
 </head>
 <body>
 
@@ -116,7 +115,7 @@
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix">
                                 <?php // TODO: adaptive menu ?>
-                                <li class="current"><a href="/">Home</a>
+                                <li class="current"><a href="/"><?= HOME ?></a>
 <!--                                    <ul>-->
 <!--                                        <li><a href="index.html">Home Style 01</a></li>-->
 <!--                                        <li><a href="index-2.html">Home Style 02</a></li>-->
@@ -141,15 +140,21 @@
 <!--                                </li>-->
 
                                 <li>
-                                    <a href="/products">Shop</a>
+                                    <a href="/products"><?= SHOP ?></a>
                                 </li>
-                                <li><a href="/contact">Contact Us</a></li>
-                                <li><a href="/about">About</a></li>
+                                <li><a href="/contact"><?= CONTACT_US ?></a></li>
+                                <li><a href="/about"><?= ABOUT ?></a></li>
                                 <?php if (\core\App::$session->contains('username')): ?>
-                                    <li class="auth-status"><a href="/cabinet">Cabinet</a></li>
+                                    <li class="auth-status"><a href="/cabinet"><?= CABINET ?></a></li>
                                 <?php else: ?>
-                                    <li class="auth-status"><a data-toggle="modal" data-target=".auth-modal">Auth</a></li>
+                                    <li class="auth-status"><a data-toggle="modal" data-target=".auth-modal"><?= AUTH ?></a></li>
                                 <?php endif; ?>
+                                <li class="dropdown"><a><?= LANGUAGE ?></a>
+                                    <ul>
+                                        <li><a class="language-button">en</a></li>
+                                        <li><a class="language-button">ru</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </nav>

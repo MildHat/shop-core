@@ -234,4 +234,20 @@ $(document).ready(() => {
     }
 
     new Basket
+
+
+    $('.language-button').on('click', (event) => {
+        let lang = event.target.textContent;
+        $.ajax({
+            url: '/pages/changeLanguage',
+            method: 'POST',
+            data: {
+                lang: lang
+            },
+            success: (response) => {
+                console.log('!');
+                location.reload();
+            }
+        });
+    });
 });

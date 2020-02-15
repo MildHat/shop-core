@@ -2,6 +2,8 @@
 
 use \core\Router;
 
+// language
+Router::add('^pages/changeLanguage$', ['controller' => 'pages', 'action' => 'changeLanguage']);
 
 // order
 Router::add('^checkout$', ['controller' => 'order']);
